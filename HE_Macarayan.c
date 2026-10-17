@@ -1,0 +1,61 @@
+
+#include <stdio.h>
+
+int main() {
+    int choice;
+    float balance = 500.00;
+    float amount;
+
+    do {
+        printf("\nTurko Bank\n");
+        printf("\nPlease Select your Transaction\n");
+        printf("[1] Balance Inquiry\n");
+        printf("[2] Deposit\n");
+        printf("[3] Withdraw\n");
+        printf("[4] Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("\nYour current balance is: P%.2f\n", balance);
+                break;
+
+            case 2:
+                printf("Enter amount to deposit: ");
+                scanf("%f", &amount);
+
+                if (amount > 0) {
+                    balance = balance + amount;
+                    printf("P%.2f deposited successfully!\n", amount);
+                } else {
+                    printf("Invalid deposit amount!\n");
+                }
+                break;
+
+            case 3:
+                printf("Enter amount to withdraw: ");
+                scanf("%f", &amount);
+
+                if (amount <= 0) {
+                    printf("Invalid withdrawal amount!\n");
+                } else if (balance - amount < 100.00) {
+                    printf("Withdrawal denied! You must maintain at least P100.00 in your account.\n");
+                } else {
+                    balance = balance - amount;
+                    printf("You withdrew P%.2f successfully!\n", amount);
+                }
+                break;
+
+            case 4:
+                printf("Thank you for using Turko Bank! arigathanks\n");
+                break;
+
+            default:
+                printf("Invalid choice! Please select from 1 to 4 only.\n");
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
